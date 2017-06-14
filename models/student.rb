@@ -34,6 +34,11 @@ class Student
     return House.new(house_hash)
   end
 
+  def delete()
+    sql = "DELETE FROM students WHERE id=#{ @id };"
+    SqlRunner.run( sql )
+  end
+
   def self.all()
     sql = "SELECT * FROM students"
     students = SqlRunner.run( sql )

@@ -2,6 +2,7 @@ require ('sinatra')
 require ('sinatra/contrib/all')
 require ('pry-byebug')
 require_relative ('models/student')
+require_relative ('models/house')
 
 #INDEX
 get "/students" do
@@ -11,13 +12,13 @@ end
 
 #NEW
 get "/students/new" do
+  @houses = House.all
   erb(:new)
 end
 
 #CREATE
 post "/students" do
   @student = Student.new(params)
-  # binding.pry
   @student.save()
   erb(:create)
 end
